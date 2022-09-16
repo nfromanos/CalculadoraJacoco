@@ -2,7 +2,6 @@ package com.example.jacoco.controller;
 import com.example.jacoco.data_service.SwitchOperacao;
 import com.example.jacoco.dto.OperacaoDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
