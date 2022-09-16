@@ -30,7 +30,10 @@ public class SwitchOperacao {
     }
 
     private void verificarOperacao(String[] listaOperacao, List<String> operacoesPermitidas) {
-        if(!operacoesPermitidas.contains(listaOperacao[1])){
+        if(listaOperacao.length <= 1){
+            throw new IllegalArgumentException("Tamanho pequeno");
+        }
+        if(!operacoesPermitidas.contains(listaOperacao[1]) ){
             throw new IllegalArgumentException("Operação inválida\nEx: +, -, *, /");
         }
     }
