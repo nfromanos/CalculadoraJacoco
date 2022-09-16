@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
+    id 'jacoco'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport{                 //configuration for report formats.
+    dependsOn test
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.enabled true
+    }
+    finalizedBy jacocoTestCoverageVerification  //run right after jacocoTestReport
+}
+jacocoTestCoverageVerification {   //Verifies the code coverage rule if enabled.
+    violationRules {
+        rule {
+            enabled = true
+        }
+    }
+}
